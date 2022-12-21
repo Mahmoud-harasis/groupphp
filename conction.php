@@ -8,8 +8,6 @@ $conn = new PDO($dsn, $user, $pass); // Start a New connection with PDO class
 
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
-
 }
 catch(PDOException $e) {
     echo 'Failed' . $e->getMessage();

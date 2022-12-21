@@ -30,12 +30,16 @@ $employees=$stmt->fetchAll(PDO::FETCH_ASSOC);
   </thead>
   <tbody>
    
+  <?php
+
+?>
         <?php
-        
         foreach($employees as $employee){
-         
-        
-        
+        ?>
+        <?php
+if ($employee['is_deleted']==1) {
+  continue;
+}
         ?>
           <tr>
         
@@ -45,9 +49,12 @@ $employees=$stmt->fetchAll(PDO::FETCH_ASSOC);
         <td><?PHP echo $employee['salary'] ?></td>
         <td>
                   <a href="update.php?id=<?php echo $employee['id'] ?>" class="btn btn-sm btn-outline-primary">Edit</a>
+
                   <form method="post" action="delete.php" style="display: inline-block">
                       <input  type="hidden" name="id" value="<?php echo $employee['id'] ?>"/>
-                      <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                      <!-- <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button> -->
+                      <a href="delete.php?id=<?php echo $employee['id'] ?>" class="btn btn-sm btn-outline-primary">Delete</a>
+
                   </form>
               </td>
   
