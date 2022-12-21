@@ -4,13 +4,6 @@ $query='SELECT * FROM employees';
 $stmt=$conn->prepare($query) ;
 $stmt->execute();
 $employees=$stmt->fetchAll(PDO::FETCH_ASSOC);
-echo "<pre>";
-print_r($employees);
-echo "</pre>";
-
-foreach($employees as $employee){
-  print_r($employee['Salary']);
-}
 
 ?>
 <!DOCTYPE html>
@@ -23,7 +16,7 @@ foreach($employees as $employee){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-<a href="#"  type="button" class="btn btn-outline-warning">+ Add New Employee</a>
+<a href="./create.php"  type="button" class="btn btn-outline-warning">+ Add New Employee</a>
 <table class="table">
     
   <thead> 
@@ -47,9 +40,9 @@ foreach($employees as $employee){
           <tr>
         
         <th scope="row"><?PHP echo $employee['id']?></th>
-        <td><?PHP echo $employee['Name'] ?></td>
-        <td><?PHP echo $employee['Address']?></td>
-        <td><?PHP echo $employee['Salary '] ?></td>
+        <td><?PHP echo $employee['name'] ?></td>
+        <td><?PHP echo $employee['address']?></td>
+        <td><?PHP echo $employee['salary'] ?></td>
         <td>
                   <a href="update.php?id=<?php echo $employee['id'] ?>" class="btn btn-sm btn-outline-primary">Edit</a>
                   <form method="post" action="delete.php" style="display: inline-block">
