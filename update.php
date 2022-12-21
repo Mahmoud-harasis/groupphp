@@ -9,25 +9,25 @@ $stmt->bindValue(':id', $id);
 $stmt->execute();
 $employee=$stmt->fetch(PDO::FETCH_ASSOC);
 
-print_r($employee);
+// print_r($employee);
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["name"]) && isset($_POST["address"]) && isset($_POST["salary"])){
     $name=$_POST['name'];
-    $adress=$_POST['adress'];
+    $address=$_POST['address'];
     $salary=$_POST['salary'];
 
-$query = 'UPDATE employees SET name = :name, adress = :adress, salary = :salary WHERE id= :id';
+$query = 'UPDATE employees SET name = :name, address = :address, salary = :salary WHERE id= :id';
 $statement=$conn->prepare($query);
 $statement->bindValue(':name', $name);
-$statement->bindValue(':adress', $adress);
+$statement->bindValue(':address', $address);
 $statement->bindValue(':salary', $salary);
+
 $statement->bindValue(':id', $id);
 
 $statement->execute();
 header("Location: http://localhost/groupphp/index.php");
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +38,7 @@ header("Location: http://localhost/groupphp/index.php");
 
 </head>
 <body>
+  <div class="container">
     <h1>Manage The Employees</h1>
 <form method="POST">
   <div class="mb-3">
@@ -46,7 +47,7 @@ header("Location: http://localhost/groupphp/index.php");
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Address:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="adress" value="<?php echo $employee['adress'] ?>">
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="address" value="<?php echo $employee['address'] ?>">
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Salary:</label>
@@ -57,6 +58,6 @@ header("Location: http://localhost/groupphp/index.php");
 </form>
 
 
-
+</div>
 </body>
 </html>
